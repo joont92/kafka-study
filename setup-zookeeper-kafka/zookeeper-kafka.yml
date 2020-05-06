@@ -1,0 +1,29 @@
+version: "2"
+services:
+  zookeeper1:
+    hostname: zookeeper1
+    image: wurstmeister/zookeeper
+#    volumes:
+#      - ./zoo.cfg:/opt/zookeeper-3.4.13/conf/zoo.cfg
+  zookeeper2:
+    hostname: zookeeper2    
+    image: wurstmeister/zookeeper
+#    volumes:
+#      - ./zoo.cfg:/opt/zookeeper-3.4.13/conf/zoo.cfg
+  zookeeper3:
+    hostname: zookeeper3
+    image: wurstmeister/zookeeper
+#    volumes:
+#      - ./zoo.cfg:/opt/zookeeper-3.4.13/conf/zoo.cfg
+  kafka1:
+    image: wurstmeister/kafka
+    depends_on:
+      - zookeeper1
+      - zookeeper2
+      - zookeeper3
+  kafka2:
+    image: wurstmeister/kafka
+    depends_on:
+      - zookeeper1
+      - zookeeper2
+      - zookeeper3
