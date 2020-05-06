@@ -7,12 +7,12 @@ import java.util.Properties;
 public class KafkaBookProducerKey {
   public static void main(String[] args) {
     Properties props = new Properties();
-    props.put("bootstrap.servers", "peter-kafka001:9092,peter-kafka002:9092,peter-kafka003:9092");    
+    props.put("bootstrap.servers", "peter-kafka001:9092,peter-kafka002:9092,peter-kafka003:9092");
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
     Producer<String, String> producer = new KafkaProducer<>(props);
-    String testTopic = "peter-topic2";
+    String testTopic = "peter-topic";
     String oddKey = "1";
     String evenKey = "2";
 
