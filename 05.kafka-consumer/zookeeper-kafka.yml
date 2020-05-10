@@ -5,7 +5,7 @@ services:
     ports:
       - 2181:2181
     networks:
-      producer-vpcbr:
+      consumer-vpcbr:
         ipv4_address: 10.5.0.2
 
   kafka1:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - zookeeper
     networks:
-      producer-vpcbr:
+      consumer-vpcbr:
         ipv4_address: 10.5.0.3
 
   kafka2:
@@ -33,7 +33,7 @@ services:
     depends_on:
       - zookeeper
     networks:
-      producer-vpcbr:
+      consumer-vpcbr:
         ipv4_address: 10.5.0.4
 
   kafka3:
@@ -47,11 +47,11 @@ services:
     depends_on:
       - zookeeper
     networks:
-      producer-vpcbr:
+      consumer-vpcbr:
         ipv4_address: 10.5.0.5
 
 networks:
-  producer-vpcbr:
+  consumer-vpcbr:
       driver: bridge
       ipam:
         config:
