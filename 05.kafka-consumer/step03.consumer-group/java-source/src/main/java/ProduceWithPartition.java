@@ -12,14 +12,16 @@ public class ProduceWithPartition {
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
     Producer<String, String> producer = new KafkaProducer<>(props);
-    
+  
+    String topic = "topic-05-03";
+
     for (long i = 0; i < 100; i++) {
       if(i % 10 == 0) {
-        producer.send(new ProducerRecord<>("topic-05-04", 0, "10", "10의 배수"));
+        producer.send(new ProducerRecord<>(topic, 0, "0", "10의 배수"));
       } else if(i % 5 == 0) {
-        producer.send(new ProducerRecord<>("topic-05-04", 1, "5", "5의 배수"));
+        producer.send(new ProducerRecord<>(topic, 1, "1", "5의 배수"));
       } else {
-        producer.send(new ProducerRecord<>("topic-05-04", 2, "0", "나머지"));
+        producer.send(new ProducerRecord<>(topic, 2, "2", "나머지"));
       }
     }
 
