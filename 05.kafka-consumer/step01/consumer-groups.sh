@@ -1,3 +1,0 @@
-~/workspace/kafka-study/kafka_2.5.0/bin/kafka-consumer-groups.sh \
---bootstrap-server localhost:19092,localhost:29092,localhost:39092 \
---list

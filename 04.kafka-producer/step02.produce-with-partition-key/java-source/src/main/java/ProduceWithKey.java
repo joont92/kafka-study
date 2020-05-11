@@ -21,9 +21,9 @@ public class ProduceWithKey {
     // produce
     for (long i = 1; i < 11; i++) {
       if(i % 2 == 0) {
-        producer.send(new ProducerRecord<>("peter-topic", gson.toJson(new User(i, "joont", 29))));
+        producer.send(new ProducerRecord<>("peter-topic", "1", gson.toJson(new User(i, "joont", 29))));
       } else {
-        producer.send(new ProducerRecord<>("peter-topic", gson.toJson(new User(i, "joont", 29))));
+        producer.send(new ProducerRecord<>("peter-topic", "2", gson.toJson(new User(i, "joont", 29))));
       }
     }
 
