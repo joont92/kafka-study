@@ -100,12 +100,20 @@
 
 - **사실은 브로커가 아니라 파티션이다**
   - 지금까진 리플리케이션을 전부 브로커 레벨에서 설명했지만, 실제로는 파티션 단위로 일어난다
+    - 리더, 팔로워 또한 파티션마다 다르다
+      ```
+      Created topic topic-03.
+      Topic: topic-03	PartitionCount: 3	ReplicationFactor: 3	Configs: 
+        Topic: topic-03	Partition: 0	Leader: 3	Replicas: 3,1,2Isr: 3,1,2
+        Topic: topic-03	Partition: 1	Leader: 1	Replicas: 1,2,3Isr: 1,2,3
+        Topic: topic-03	Partition: 2	Leader: 2	Replicas: 2,3,1Isr: 2,3,1
+      ```
   - 브로커 안에 토픽이 있고, 토픽안에 파티션이 있고, 이 파티션들이 브로커 단위로 리플리케이션 되는 것이다
     - ![카프카 리플리케이션](../img/kafka_replication.jpg)
   - 리더의 토픽에 해당하는 파티션이 전부 리플리케이션 될 것이기 때문에, 팔로워들의 파티션 개수는 리더의 파티션 개수와 동일해야 한다
     - 팔로워가 리더의 3번 파티션을 리플리케이션 하려고 하는데, 팔로워에 3번 파티션이 없다면 실패할 것이기 때문이다
     - 하지만 애초에 토픽 생성 + 파티션 생성 명령을 브로커에 하지 않고 zookeeper에 하므로, 이 부분은 크게 문제되지 않는다
-      - kafka 생성 시 zookeeper url 을 주기 때문에 zookeeper 는 모든 broker 를 알고있다
+      - kafka 생성 시 zookeeper url 을 주기 때문에 zookeeper 는 모든 broker 를 알고있다  
 
 ## 모든 브로커가 다운된다면
 - 팔로워가 모두 다운되고, 최종적으로 리더까지 다운된 상태를 말한다
