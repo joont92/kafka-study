@@ -1,8 +1,11 @@
 topic="topic-05-03"
 consumerGroup="consumer-group-${topic}"
 
-kill -9 `ps -ef | grep ${consumerGroup} | awk '{print $2}'`
-rm -rf consume-*.log
+trap quit SIGINT
+function quit() {
+    kill -9 `ps -ef | grep ${topic} | awk '{print $2}'`
+    rm -rf consume-*.log
+}
 
 for((i = 0;i < 3;i++)); do
 	~/workspace/kafka-study/kafka_2.5.0/bin/kafka-console-consumer.sh \

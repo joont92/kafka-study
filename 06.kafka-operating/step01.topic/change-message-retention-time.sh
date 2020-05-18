@@ -1,3 +1,5 @@
+./create.sh 1
+
 topic="topic-06-01"
 
 ~/workspace/kafka-study/kafka_2.5.0/bin/kafka-configs.sh \

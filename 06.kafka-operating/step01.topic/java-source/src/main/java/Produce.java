@@ -6,9 +6,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 
-public class ProduceWithKey {
+public class Produce {
+  private static final Gson gson = new Gson();
+
   public static void main(String[] args) {
-    Gson gson = new Gson();
+    String topicName = "topic-06-01";
 
     // 설정
     Properties props = new Properties();
@@ -18,11 +20,12 @@ public class ProduceWithKey {
 
     Producer<String, String> producer = new KafkaProducer<>(props);
 
-    String topicName = "topic-06-01";
     // produce
-    for (long i = 1; i < 501; i++) {
-      producer.send(new ProducerRecord<>(topicName, String.valueOf(i), gson.toJson(new User(i, "joont", 29))));      
-      try { Thread.sleep(200); } catch(Exception e) { /*  */ }
+    for (long i = 1; i <= 100000; i++) {
+      producer.send(new ProducerRecord<>(topicName, 
+        String.valueOf((int)(Math.random() * 4) + 1), gson.toJson(new User(i, "joont", 29))));
+
+      try { Thread.sleep(10); } catch(Exception e) { /*  */ }
     }
 
     producer.close();
