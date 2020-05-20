@@ -16,7 +16,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://10.6.0.3:9092
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      JMX_PORT: 9999
     depends_on:
       - zookeeper
     networks:
@@ -31,7 +31,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://10.6.0.4:9092
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      JMX_PORT: 9999
     depends_on:
       - zookeeper
     networks:
@@ -46,7 +46,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://10.6.0.5:9092
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_DELETE_TOPIC_ENABLE: 'true'
+      JMX_PORT: 9999
     depends_on:
       - zookeeper
     networks:

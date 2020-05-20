@@ -22,8 +22,15 @@ public class Produce {
 
     // produce
     for (long i = 1; i <= 100000; i++) {
-      producer.send(new ProducerRecord<>(topicName, 
-        String.valueOf((int)(Math.random() * 4) + 1), gson.toJson(new User(i, "joont", 29))));
+      String key = String.valueOf((int)(Math.random() * 4) + 1);
+      producer.send(new ProducerRecord<>(topicName, key, gson.toJson(new User(i, "joont", 29))), 
+        (m, e) -> {
+          if(e == null) {
+              System.out.println("key : " + key + ", response : " + gson.toJson(m));
+            } else {
+              e.printStackTrace();
+            }
+        });
 
       try { Thread.sleep(10); } catch(Exception e) { /*  */ }
     }

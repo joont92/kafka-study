@@ -1,0 +1,8 @@
+version: "2"
+services:
+  kafka-manager:
+    image: hlebalbau/kafka-manager:stable
+    ports:
+      - "9000:9000"
+    environment:
+      ZK_HOSTS: localhost:2181

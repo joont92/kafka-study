@@ -1,5 +1,5 @@
 - 처음 단순하게 1개의 컨슈머로 시스템을 구성한다면 아래의 그림이 될 것이다
-    - ![](~/workspace/kafka-study/img/consumer-group-01.png)
+    - ![](../img/consumer-group-01.png)
 - 만약 프로듀서가 메시지를 보내는 속도가 컨슈머가 메시지를 consume 하는 속도보다 더 빨라진다면, 컨슈머의 개수를 늘려야만 한다
     - 컨슈머의 개수를 늘린다는건 인스턴스의 개수를 늘리는 것을 말한다
     - 하지만 단순히 인스턴스의 개수를 늘리면, 동일한 메시지를 늘어난 인스턴스 개수만큼 받게되는 문제가 발생한다
@@ -10,12 +10,12 @@
 
 
 - 컨슈머 그룹을 설정한 모습은 아래와 같다
-    - ![](~/workspace/kafka-study/img/consumer-group-02.png)
+    - ![](../img/consumer-group-02.png)
 - 컨슈머끼리 lock 을 잡고 데이터를 가져오는 구조가 아니라, **그룹내에 있는 파티션 1개당 컨슈머 1개가 연결되는 구조**이다
 - 컨슈머의 개수가 파티션의 개수보다 적으면 파티션 1개에 n 개의 컨슈머가 연결되게 된다
-    - ![](~/workspace/kafka-study/img/consumer-group-03.png)
+    - ![](../img/consumer-group-03.png)
 - 컨슈머의 개수가 파티션의 개수보다 많으면 **남는 컨슈머는 메시지를 컨슘하지 못한다**
-    - ![](~/workspace/kafka-study/img/consumer-group-04.png)
+    - ![](../img/consumer-group-04.png)
     - 파티션 1개에 컨슈머 1개만 연결될 수 있기 때문이다
         - 위의 예제에서는 이 룰을 벗어나지 않았다
     - 결국 파티션 개수만큼 최대 컨슈머 수가 연결할 수 있다

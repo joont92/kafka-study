@@ -1,4 +1,4 @@
-./create.sh 1
+./create-topic.sh 1
 
 topic="topic-06-01"
 consumerGroup="consumer-group-${topic}"
@@ -9,7 +9,7 @@ function quit() {
     kill -9 `ps -ef | grep Produce | awk '{print $2}'`
     # rm -rf consume-*.log
 }
-rm -rf consume-*.log
+rm -rf *.log
 
 for((i = 0;i < 4;i++)); do
 	~/workspace/kafka-study/kafka_2.5.0/bin/kafka-console-consumer.sh \
@@ -19,7 +19,7 @@ for((i = 0;i < 4;i++)); do
 done
 
 cd java-source
-./gradlew run > /dev/null &
+./gradlew run > ../produce.log &
 cd ..
 
 function increasePartition() {

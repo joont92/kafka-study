@@ -15,7 +15,7 @@ public class ProduceWithPartition {
   
     String topic = "topic-05-03";
 
-    for (long i = 0; i < 100; i++) {
+    for (long i = 0; i < 1000; i++) {
       if(i % 10 == 0) {
         producer.send(new ProducerRecord<>(topic, 0, "0", "10의 배수"));
       } else if(i % 5 == 0) {
@@ -23,6 +23,7 @@ public class ProduceWithPartition {
       } else {
         producer.send(new ProducerRecord<>(topic, 2, "2", "나머지"));
       }
+      try { Thread.sleep(100); } catch(Exception e) { /*  */ }
     }
 
     producer.close();
