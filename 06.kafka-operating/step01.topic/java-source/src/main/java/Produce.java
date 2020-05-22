@@ -17,12 +17,13 @@ public class Produce {
     props.put("bootstrap.servers", "localhost:19092,localhost:29092,localhost:39092");
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("metadata.max.age.ms", 10); // 기본값이 5분이라 파티션을 변경하더라도 5분간은 하나의 파티션에 publish 한다
 
     Producer<String, String> producer = new KafkaProducer<>(props);
 
     // produce
     for (long i = 1; i <= 100000; i++) {
-      String key = String.valueOf((int)(Math.random() * 4) + 1);
+      String key = String.valueOf((int)(Math.random() * 3) + 1);
       producer.send(new ProducerRecord<>(topicName, key, gson.toJson(new User(i, "joont", 29))), 
         (m, e) -> {
           if(e == null) {

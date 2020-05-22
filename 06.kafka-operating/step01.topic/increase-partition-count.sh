@@ -11,11 +11,12 @@ function quit() {
 }
 rm -rf *.log
 
+# consumer group 으로 뭔가 잘 안됨..
 for((i = 0;i < 4;i++)); do
 	~/workspace/kafka-study/kafka_2.5.0/bin/kafka-console-consumer.sh \
 	--bootstrap-server localhost:19092,localhost:29092,localhost:39092 \
 	--topic ${topic} \
-	--group ${consumerGroup} > "consume-$((i+1)).log" &
+	--partition ${i} > "consume-$((i+1)).log" &
 done
 
 cd java-source
