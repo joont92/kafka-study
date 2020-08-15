@@ -12,9 +12,9 @@ public class Consume {
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-    props.put("group.id", "peter-consumer");
-    props.put("enable.auto.commit", "true");
-    props.put("auto.offset.reset", "latest");
+    // props.put("group.id", "peter-consumer");
+    // props.put("enable.auto.commit", "true");
+    // props.put("auto.offset.reset", "latest");
     
     KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
