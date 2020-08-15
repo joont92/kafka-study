@@ -11,13 +11,11 @@ function quit() {
 }
 rm -rf *.log
 
-# consumer group 으로 뭔가 잘 안됨..
 for((i = 0;i < 4;i++)); do
 	~/workspace/kafka-study/kafka_2.5.0/bin/kafka-console-consumer.sh \
 	--bootstrap-server localhost:19092,localhost:29092,localhost:39092 \
 	--topic ${topic} \
-    --partition ${i} > "consume-$((i+1)).log" &
-	# --group ${consumerGroup} > "consume-$((i+1)).log" &	
+	--group ${consumerGroup} > "consume-$((i+1)).log" &	
 done
 
 cd java-source
@@ -28,6 +26,7 @@ function increasePartition() {
     sleep 10
     ~/workspace/kafka-study/kafka_2.5.0/bin/kafka-topics.sh \
     --zookeeper localhost:2181 \
+    # partition 이 늘어나면서 기존의 4개의 컨슈머가 파티션에 각각 리밸런싱 됨
     --alter --topic ${topic} --partitions 4
 }
 

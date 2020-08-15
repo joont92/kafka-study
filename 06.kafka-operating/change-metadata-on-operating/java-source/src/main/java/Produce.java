@@ -17,7 +17,9 @@ public class Produce {
     props.put("bootstrap.servers", "localhost:19092,localhost:29092,localhost:39092");
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
     props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-    props.put("metadata.max.age.ms", 10); // 기본값이 5분이라 파티션을 변경하더라도 5분간은 하나의 파티션에 publish 한다
+    // 기본값이 5분이라 파티션 사이즈가 늘어나도 5분간은 기존 파티션에 publish 한다
+    // % 연산에서 partitionCount 를 계속 기존값(e.g. 1)으로 잡고 있는듯..
+    props.put("metadata.max.age.ms", 10); 
 
     Producer<String, String> producer = new KafkaProducer<>(props);
 
